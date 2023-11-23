@@ -1,7 +1,7 @@
 
 # Løn
-time_løn = 300
-timer_arbejdet_om_dagen = 6
+time_løn = 131.4
+timer_arbejdet_om_dagen = 3
 dage_arbejde_ugen = 2
 uger_om_året = 52
 
@@ -26,7 +26,10 @@ print("Skat efter topskat er: ", maksimal_skat_sats * 100, "%\n")
 print("Total timer arbejdet om året: ", total_timer, "og brutto løn er: ", brutto_løn, "kr")
 
 uden_am_bidrag = brutto_løn - (brutto_løn * am_bidrag_sats)
-uden_personligt_fraktræk = uden_am_bidrag - personligt_fraktræk
+if uden_am_bidrag < personligt_fraktræk:
+    uden_personligt_fraktræk = uden_am_bidrag
+else:
+    uden_personligt_fraktræk = uden_am_bidrag - personligt_fraktræk
 betaler_topskat = uden_personligt_fraktræk > topskat_starter
 
 if betaler_topskat:
@@ -37,12 +40,15 @@ if betaler_topskat:
     print("\nTopskat blevet betalt", int(topskat_betalt_af * maksimal_skat_sats), "kr")
     print("Normal skat blevet betalt: ", int(topskat_starter * betalt_skat), "kr\n")
     topskat_betalt = topskat_betalt_af - (topskat_betalt_af * maksimal_skat_sats)
-    penge_efter_skat = penge_med_normal_skat + topskat_betalt
+    penge_efter_skat = penge_med_normal_skat + topskat_betalt+personligt_fraktræk
     print("Penge efter skat: ", int(penge_efter_skat), "kr")
     print("\nPenge betalt i skat: ", int(brutto_løn - penge_efter_skat), "kr")
     print("Penge efter skat: ", int(penge_efter_skat), "kr")
 else:
     print("\n penge der bliver betalt skat af: ", int(uden_personligt_fraktræk), "kr")
-    penge_efter_skat = uden_personligt_fraktræk - (uden_personligt_fraktræk * betalt_skat)+personligt_fraktræk
+    if uden_personligt_fraktræk < personligt_fraktræk:
+        penge_efter_skat=uden_personligt_fraktræk 
+    else:
+        penge_efter_skat = uden_personligt_fraktræk - (uden_personligt_fraktræk * betalt_skat)+personligt_fraktræk
     print("\nPenge efter skat: ", int(penge_efter_skat), "kr")
-    print("Betalte penge i skat: ", int(uden_personligt_fraktræk * betalt_skat), "kr")
+    print("Betalte penge i skat: ", int(uden_personligt_fraktræk -penge_efter_skat), "kr")
