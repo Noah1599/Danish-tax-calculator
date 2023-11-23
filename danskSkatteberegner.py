@@ -1,13 +1,14 @@
+
 # Løn
-time_løn = 654.4
-timer_arbejdet_om_dagen = 8
-dage_arbejde_ugen = 5
+time_løn = 300
+timer_arbejdet_om_dagen = 6
+dage_arbejde_ugen = 2
 uger_om_året = 52
 
 # Skattesatser
-su = 1004
+su = 0
 grundskat_sats = 0.1206
-kommuneskat_sats = 0.234
+kommuneskat_sats = 0.2552
 kirkeskat_sats = 0.0089
 personligt_fraktræk = 49700
 am_bidrag_sats = 0.08
@@ -19,8 +20,7 @@ topskat_sats = 0.15
 betalt_skat = grundskat_sats + kommuneskat_sats + kirkeskat_sats
 maksimal_skat_sats = betalt_skat + topskat_sats
 total_timer = timer_arbejdet_om_dagen * dage_arbejde_ugen * uger_om_året
-brutto_løn = total_timer * time_løn + su * 12
-
+brutto_løn = total_timer * time_løn + su *12
 print("Skat før topskat er: ", betalt_skat * 100, "%")
 print("Skat efter topskat er: ", maksimal_skat_sats * 100, "%\n")
 print("Total timer arbejdet om året: ", total_timer, "og brutto løn er: ", brutto_løn, "kr")
@@ -42,7 +42,7 @@ if betaler_topskat:
     print("\nPenge betalt i skat: ", int(brutto_løn - penge_efter_skat), "kr")
     print("Penge efter skat: ", int(penge_efter_skat), "kr")
 else:
-    penge_efter_skat = uden_personligt_fraktræk - (uden_personligt_fraktræk * betalt_skat)
-    print("Penge betalt i skat: ", int(uden_personligt_fraktræk * betalt_skat), "kr")
+    print("\n penge der bliver betalt skat af: ", int(uden_personligt_fraktræk), "kr")
+    penge_efter_skat = uden_personligt_fraktræk - (uden_personligt_fraktræk * betalt_skat)+personligt_fraktræk
     print("\nPenge efter skat: ", int(penge_efter_skat), "kr")
     print("Betalte penge i skat: ", int(uden_personligt_fraktræk * betalt_skat), "kr")
