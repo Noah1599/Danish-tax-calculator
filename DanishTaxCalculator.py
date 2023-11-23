@@ -42,7 +42,7 @@ if pays_top_tax:
     print("\nMoney paid in tax: ", int(gross_salary - money_after_tax), "kr")
     print("Money after tax: ", int(money_after_tax), "kr")
 else:
-    money_after_tax = without_personal_deduction - (without_personal_deduction * tax_paid)
+    money_after_tax = without_personal_deduction - (without_personal_deduction * tax_paid)+personal_deduction
     print("Money paid in tax: ", int(without_personal_deduction * tax_paid), "kr")
     print("\nMoney after tax: ", int(money_after_tax), "kr")
     print("Paid money in tax: ", int(without_personal_deduction * tax_paid), "kr")
