@@ -1,8 +1,8 @@
 // Salary
-const hourlyWage = 131.4;
-const hoursWorkedPerDay = 3;
-const daysWorkPerWeek = 2;
-const weeksPerYear = 52;
+const hourlyWage = x;
+const hoursWorkedPerDay = x;
+const daysWorkPerWeek = x;
+const weeksPerYear = x;
 
 // Tax Rates
 const su = 0;
