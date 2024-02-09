@@ -7,6 +7,15 @@
 //danish crypto tax runs on the FIFO principle
 
 
+/*profit: cryptoProfit,
+taxToPay: cryptoProfit * cryptoTaxRate,
+lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
+taxProcetage: cryptoTaxRate * 100,
+bought: cryptoBoughtPrice,
+sold: cryptoSoldValue,
+holdtime: cryptoHoldingTimeInDays*/
+
+var obj ={};
 const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, cryptoDate, cryptoSoldPrice, cryptoSoldDate) => {
     let type = 0;
     let cryptoTaxRate = 0;
@@ -42,9 +51,9 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
     if (type==0) return console.log("error, something went wrong, please try again");
 
     if (type==1) {
-        const l = 
+        const hi = 
         [{
-            id: cryptoSoldDate,
+
             loss: cryptoProfit,
             taxReduction: cryptoProfit * cryptoTaxRate,
             lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
@@ -52,12 +61,11 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
             bought: cryptoBoughtPrice,
             sold: cryptoSoldValue,
             holdtime: cryptoHoldingTimeInDays
-        }];   
-        console.log(l);
+        }]; 
+        obj[obj.length]=(hi);  
     }else if (type==2) {
-        const w = 
+        const hi = 
         [{
-            id: cryptoSoldDate,
             profit: cryptoProfit,
             taxToPay: cryptoProfit * cryptoTaxRate,
             lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
@@ -66,8 +74,11 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
             sold: cryptoSoldValue,
             holdtime: cryptoHoldingTimeInDays
         }];
-        console.log(w);
+        obj[obj.length]=(hi);
     }
+    
+    console.log(obj);
+    
 }
 //convert the date to the right format
 
