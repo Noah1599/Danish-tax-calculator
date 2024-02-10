@@ -54,8 +54,8 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
         const hi = 
         [{
 
-            loss: cryptoProfit,
-            taxReduction: cryptoProfit * cryptoTaxRate,
+            profit: cryptoProfit,
+            tax: cryptoProfit * cryptoTaxRate,
             lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
             taxReductionProcetage: cryptoTaxRate * 100,
             bought: cryptoBoughtPrice,
@@ -67,17 +67,17 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
         const hi = 
         [{
             profit: cryptoProfit,
-            taxToPay: cryptoProfit * cryptoTaxRate,
+            tax: cryptoProfit * cryptoTaxRate,
             lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
             taxProcetage: cryptoTaxRate * 100,
             bought: cryptoBoughtPrice,
             sold: cryptoSoldValue,
             holdtime: cryptoHoldingTimeInDays
         }];
-        obj[obj.length]=(hi);
+        obj[obj.length+1]=(hi);
     }
-    
     console.log(obj);
+    
     
 }
 //convert the date to the right format
@@ -85,3 +85,9 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
 
 //cryptotax(profitThisYear, crypto amout, crypto price, new Date(bought year, borught mounth, bought day), crypto sold price, new Date(sold year, sold mounth, sold day))
 cryptoTax(0,1, 100, new Date(2020, 1, 1), 50, new Date(2020, 12, 31));
+cryptoTax(5,1, 10, new Date(2020, 1, 1), 5000, new Date(2021, 12, 31));
+cryptoTax(0,1, 300, new Date(2020, 1, 1), 250, new Date(2023, 12, 31));
+cryptoTax(0,1, 500, new Date(2020, 1, 1), 5100, new Date(2024, 12, 31));
+cryptoTax(0,1, 200, new Date(2020, 1, 1), 150, new Date(2025, 12, 31));
+
+console.log(obj);
