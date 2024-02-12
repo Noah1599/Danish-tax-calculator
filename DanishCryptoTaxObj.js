@@ -60,7 +60,9 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
             taxReductionProcetage: cryptoTaxRate * 100,
             bought: cryptoBoughtPrice,
             sold: cryptoSoldValue,
-            holdtime: cryptoHoldingTimeInDays
+            holdtime: cryptoHoldingTimeInDays,
+            profitThisYear: startingProfitThisYear + ( cryptoProfit - cryptoProfit * cryptoTaxRate)
+
         };  
     }else if (type==2) {
         obj[cryptoSoldDate] = 
@@ -71,7 +73,8 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
             taxProcetage: cryptoTaxRate * 100,
             bought: cryptoBoughtPrice,
             sold: cryptoSoldValue,
-            holdtime: cryptoHoldingTimeInDays
+            holdtime: cryptoHoldingTimeInDays,
+            profitThisYear: startingProfitThisYear + cryptoProfit
         };
         //now we set the name of the array to the date
         
@@ -85,10 +88,10 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
 
 //cryptotax(profitThisYear, crypto amout, crypto price, new Date(bought year, borught mounth, bought day), crypto sold price, new Date(sold year, sold mounth, sold day))
 cryptoTax(0,1, 100, new Date(2020, 0, 1), 50, new Date(2020, 11, 31));
-cryptoTax(5,1, 10, new Date(2020, 0, 1), 5000, new Date(2021, 11, 31));
-cryptoTax(0,1, 300, new Date(2020, 0, 1), 600, new Date(2023, 11, 31));
-cryptoTax(0,1, 500, new Date(2020, 0, 1), 5100, new Date(2024, 11, 31));
-cryptoTax(0,1, 200, new Date(2020, 0, 1), 150, new Date(2025, 11, 31));
+cryptoTax(obj[new Date(2020, 11, 31)].profitThisYear,1, 10, new Date(2020, 0, 1), 5000, new Date(2021, 11, 31));
+cryptoTax(obj[new Date(2021, 11, 31)].profitThisYear,1, 300, new Date(2020, 0, 1), 600, new Date(2022, 11, 31));
+cryptoTax(obj[new Date(2022, 11, 31)].profitThisYear,1, 500, new Date(2020, 0, 1), 5100, new Date(2023, 11, 31));
+cryptoTax(obj[new Date(2023, 11, 31)].profitThisYear,1, 200, new Date(2020, 0, 1), 150, new Date(2024, 11, 31));
 
 console.log(obj);
 console.log("hhhhh");
