@@ -7,13 +7,14 @@
 //danish crypto tax runs on the FIFO principle
 
 
-/*profit: cryptoProfit,
-taxToPay: cryptoProfit * cryptoTaxRate,
-lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
-taxProcetage: cryptoTaxRate * 100,
-bought: cryptoBoughtPrice,
-sold: cryptoSoldValue,
-holdtime: cryptoHoldingTimeInDays*/
+//p = profit
+//t = tax
+//pdt = profit after deduction
+//trp = tax reduction procetage
+//b = bought
+//s = sold
+//ht = holdtime
+//pty = profit this year
 
 var obj =[];
 const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, cryptoDate, cryptoSoldPrice, cryptoSoldDate) => {
@@ -54,27 +55,27 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
         obj[cryptoSoldDate] = 
         {
 
-            profit: cryptoProfit,
-            tax: cryptoProfit * cryptoTaxRate,
-            lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
-            taxReductionProcetage: cryptoTaxRate * 100,
-            bought: cryptoBoughtPrice,
-            sold: cryptoSoldValue,
-            holdtime: cryptoHoldingTimeInDays,
-            profitThisYear: startingProfitThisYear + ( cryptoProfit - cryptoProfit * cryptoTaxRate)
+            p: cryptoProfit,
+            t: cryptoProfit * cryptoTaxRate,
+            pdt: cryptoProfit - cryptoProfit * cryptoTaxRate,
+            trp: cryptoTaxRate * 100,
+            b: cryptoBoughtPrice,
+            s: cryptoSoldValue,
+            ht: cryptoHoldingTimeInDays,
+            pty: startingProfitThisYear + ( cryptoProfit - cryptoProfit * cryptoTaxRate)
 
         };  
     }else if (type==2) {
         obj[cryptoSoldDate] = 
         {
-            profit: cryptoProfit,
-            tax: cryptoProfit * cryptoTaxRate,
-            lossAfterDeduction: cryptoProfit - cryptoProfit * cryptoTaxRate,
-            taxProcetage: cryptoTaxRate * 100,
-            bought: cryptoBoughtPrice,
-            sold: cryptoSoldValue,
-            holdtime: cryptoHoldingTimeInDays,
-            profitThisYear: startingProfitThisYear + cryptoProfit
+            p: cryptoProfit,
+            t: cryptoProfit * cryptoTaxRate,
+            pdt: cryptoProfit - cryptoProfit * cryptoTaxRate,
+            t: cryptoTaxRate * 100,
+            b: cryptoBoughtPrice,
+            s: cryptoSoldValue,
+            ht: cryptoHoldingTimeInDays,
+            pty: startingProfitThisYear + cryptoProfit
         };
         //now we set the name of the array to the date
         
@@ -88,12 +89,12 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
 
 //cryptotax(profitThisYear, crypto amout, crypto price, new Date(bought year, borught mounth, bought day), crypto sold price, new Date(sold year, sold mounth, sold day))
 cryptoTax(0,1, 100, new Date(2020, 0, 1), 50, new Date(2020, 11, 31));
-cryptoTax(obj[new Date(2020, 11, 31)].profitThisYear,1, 10, new Date(2020, 0, 1), 5000, new Date(2021, 11, 31));
-cryptoTax(obj[new Date(2021, 11, 31)].profitThisYear,1, 300, new Date(2020, 0, 1), 600, new Date(2022, 11, 31));
-cryptoTax(obj[new Date(2022, 11, 31)].profitThisYear,1, 500, new Date(2020, 0, 1), 5100, new Date(2023, 11, 31));
-cryptoTax(obj[new Date(2023, 11, 31)].profitThisYear,1, 200, new Date(2020, 0, 1), 150, new Date(2024, 11, 31));
+cryptoTax(obj[new Date(2020, 11, 31)].pty,1, 10, new Date(2020, 0, 1), 5000, new Date(2021, 11, 31));
+cryptoTax(obj[new Date(2021, 11, 31)].pty,1, 300, new Date(2020, 0, 1), 600, new Date(2022, 11, 31));
+cryptoTax(obj[new Date(2022, 11, 31)].pty,1, 500, new Date(2020, 0, 1), 5100, new Date(2023, 11, 31));
+cryptoTax(obj[new Date(2023, 11, 31)].pty,1, 200, new Date(2020, 0, 1), 150, new Date(2024, 11, 31));
 
 console.log(obj);
 console.log("hhhhh");
 //we want to log the profit on the day 2023, 12, 31
-console.log(obj[new Date(2023, 11, 31)].profit);
+console.log(obj[new Date(2023, 11, 31)].p);
