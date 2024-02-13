@@ -9,7 +9,7 @@
 
 //p = profit
 //t = tax
-//pdt = profit after deduction
+//pdt = profit after tax
 //trp = tax reduction procetage
 //b = bought
 //s = sold
@@ -17,7 +17,7 @@
 //pty = profit this year
 
 var obj =[];
-const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, cryptoDate, cryptoSoldPrice, cryptoSoldDate) => {
+const cryptoTax = (startingProfitThisYear,cryptoQuantity, cryptoenterPrice, cryptoDate, cryptoSoldPrice, cryptoSoldDate) => {
     let type = 0;
     let cryptoTaxRate = 0;
     const startingTaxRate = 0.27;
@@ -26,12 +26,12 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
     const maxMoneyBeforeTax = 51000;
     const maxMoneyBeforeTopTax = 510000;
     // The script starts here
-    const cryptoBoughtPrice = cryptoAmount * cryptoenterPrice;
+    const cryptoBoughtPrice = cryptoQuantity * cryptoenterPrice;
 
-    const cryptoSoldValue = cryptoAmount * cryptoSoldPrice;
+    const cryptoSoldValue = cryptoQuantity * cryptoSoldPrice;
 
     const cryptoProfit = cryptoSoldValue - cryptoBoughtPrice;
-
+    
     const cryptoHoldingTimeInDays = (cryptoSoldDate - cryptoDate) / (1000 * 60 * 60 * 24);
     
     if (cryptoProfit < 0) {
@@ -57,7 +57,7 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
 
             p: cryptoProfit,
             t: cryptoProfit * cryptoTaxRate,
-            pdt: cryptoProfit - cryptoProfit * cryptoTaxRate,
+            pat: cryptoProfit - cryptoProfit * cryptoTaxRate,
             trp: cryptoTaxRate * 100,
             b: cryptoBoughtPrice,
             s: cryptoSoldValue,
@@ -70,8 +70,8 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
         {
             p: cryptoProfit,
             t: cryptoProfit * cryptoTaxRate,
-            pdt: cryptoProfit - cryptoProfit * cryptoTaxRate,
-            t: cryptoTaxRate * 100,
+            pat: cryptoProfit - cryptoProfit * cryptoTaxRate,
+            trp: cryptoTaxRate * 100,
             b: cryptoBoughtPrice,
             s: cryptoSoldValue,
             ht: cryptoHoldingTimeInDays,
@@ -87,11 +87,11 @@ const cryptoTax = (startingProfitThisYear,cryptoAmount, cryptoenterPrice, crypto
 //convert the date to the right format
 
 
-//cryptotax(profitThisYear, crypto amout, crypto price, new Date(bought year, borught mounth, bought day), crypto sold price, new Date(sold year, sold mounth, sold day))
+//cryptotax(profitThisYear, crypto Quantity, crypto price, new Date(bought year, borught mounth, bought day), crypto sold price, new Date(sold year, sold mounth, sold day))
 cryptoTax(0,1, 100, new Date(2020, 0, 1), 50, new Date(2020, 11, 31));
 cryptoTax(obj[new Date(2020, 11, 31)].pty,1, 10, new Date(2020, 0, 1), 5000, new Date(2021, 11, 31));
 cryptoTax(obj[new Date(2021, 11, 31)].pty,1, 300, new Date(2020, 0, 1), 600, new Date(2022, 11, 31));
-cryptoTax(obj[new Date(2022, 11, 31)].pty,1, 500, new Date(2020, 0, 1), 5100, new Date(2023, 11, 31));
+cryptoTax(obj[new Date(2022, 11, 31)].pty,1, 500, new Date(2020, 0, 1), 51000, new Date(2023, 11, 31));
 cryptoTax(obj[new Date(2023, 11, 31)].pty,1, 200, new Date(2020, 0, 1), 150, new Date(2024, 11, 31));
 
 console.log(obj);
